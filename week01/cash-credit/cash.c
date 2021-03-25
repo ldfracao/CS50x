@@ -1,14 +1,21 @@
 #include <stdio.h>
-#include <math.h>
+#include <stdlib.h>
 
 int main (void) 
 {
     float change;
-    do
+    char ch;
+    char buffer[50];
+
+    // input filter, doesn't filter negative numbers yet
+    do 
     {
-        printf("How much change?: ");
-        scanf("%f", &change);
-    } while (change < 0);
-    
-    printf("%f", change);
+        printf("How much change: ");
+        if (fgets(buffer, sizeof buffer, stdin) == NULL) 
+        {
+            continue;
+        }  
+    } while (sscanf(buffer, "%f %c", &change, &ch) != 1);
+
+    // continue logic
 }

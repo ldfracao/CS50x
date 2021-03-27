@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <inttypes.h>
 
 //helper function to check if an input has only numbers
 int     input_numbers(char *str)
@@ -22,23 +23,26 @@ int     input_numbers(char *str)
 int     main (void)
 {
 
-    char *user_input = malloc(16 * sizeof(char));
-    int *multiplier = malloc(8 * sizeof(int));
+    char *user_input = malloc(20 * sizeof(char));
+    char *multiplier = malloc(10 * sizeof(char));
+    char *endp = "";
 
-    int j;
-    int k;
+    int j; //counter used to get every other digit
+    int k; // counter used to store every other digit
 
     k = 0;
 
     do
     {
         printf("Enter a credit card number: ");
-        fgets(user_input, 17, stdin);
+        fgets(user_input, 20, stdin);
     } while (input_numbers(user_input) == 1);
 
+    // initializes j to the length of user's input (terminator included)
     j = strlen(user_input);
     printf("%i\n", j);
 
+    // copies only necessary characters from user input to multiplier,  j - 3 because we want to start from second to last digit and strlen() includes the terminator
     while (user_input[k] != '\0')
     {
         multiplier[k] = user_input[j - 3];
@@ -47,19 +51,14 @@ int     main (void)
     }
     int m = 0;
 
+    // (NEEDS FIX) function to convert chars into ints
     while (multiplier[m] != '\0')
     {
-        printf("%c\n", multiplier[m]);
+        printf("%i\n", multiplier[m]);
+        multiplier[m] = strtoimax(&multiplier[m], &endp, 10);
+        printf("%i\n", multiplier[m]);
         m++;
     }
     
-    // printf("%c %c\n", user_input[j - 3], multiplier[k]);
-
-    // while (j >= 0)
-    // {
-    //     // multiplier[k] = user_input[j - 3] * 2;
-    //     j -= 2;
-    //     k++;
-    // }
     free(user_input);
 }

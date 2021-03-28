@@ -25,7 +25,7 @@ int     main (void)
 
     char *user_input = malloc(20 * sizeof(char));
     char *multiplier = malloc(10 * sizeof(char));
-    char *endp = "";
+    // char *endp = "";
 
     int j; //counter used to get every other digit
     int k; // counter used to store every other digit
@@ -40,7 +40,7 @@ int     main (void)
 
     // initializes j to the length of user's input (terminator included)
     j = strlen(user_input);
-    printf("%i\n", j);
+    printf("%i\n\n", j);
 
     // copies only necessary characters from user input to multiplier,  j - 3 because we want to start from second to last digit and strlen() includes the terminator
     while (user_input[k] != '\0')
@@ -54,11 +54,10 @@ int     main (void)
     // (NEEDS FIX) function to convert chars into ints
     while (multiplier[m] != '\0')
     {
-        printf("%i\n", multiplier[m]);
-        multiplier[m] = strtoimax(&multiplier[m], &endp, 10);
+        printf("%c\n", multiplier[m]);
+        multiplier[m] = (multiplier[m] - '0') * 2;//converts char to int
         printf("%i\n", multiplier[m]);
         m++;
     }
-    
     free(user_input);
 }

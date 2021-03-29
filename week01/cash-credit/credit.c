@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <inttypes.h>
 
 //helper function to check if an input has only numbers
 int     input_numbers(char *str)
@@ -42,11 +41,13 @@ int     main (void)
     printf("%i\n\n", j);
 
     // copies only necessary characters from user input to multiplier,  j - 3 because we want to start from second to last digit and strlen() includes the terminator
-    while (user_input[k] != '\n')
+    while (j >= 3)
     {
         printf("%c ", user_input[k]);
-        printf("%i \n", j);
+        printf("%i ", j);
         multiplier[k] = user_input[j - 3];
+        printf("%i ", k);
+        printf("%c \n", multiplier[k]);
         j -= 2;
         k++;
     }
@@ -62,4 +63,5 @@ int     main (void)
     }
     free(user_input);
     free(multiplier);
+    return 0;
 }

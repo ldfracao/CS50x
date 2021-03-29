@@ -59,4 +59,5 @@ int     main (void)
         m++;
     }
     free(user_input);
+    free(multiplier);
 }

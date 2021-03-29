@@ -25,8 +25,7 @@ int     main (void)
 
     char *user_input = malloc(20 * sizeof(char));
     char *multiplier = malloc(10 * sizeof(char));
-    // char *endp = "";
-
+    
     int j; //counter used to get every other digit
     int k; // counter used to store every other digit
 
@@ -51,11 +50,11 @@ int     main (void)
     }
     int m = 0;
 
-    // (NEEDS FIX) function to convert chars into ints
+    // function to convert chars into ints
     while (multiplier[m] != '\0')
     {
         printf("%c\n", multiplier[m]);
-        multiplier[m] = (multiplier[m] - '0') * 2;//converts char to int
+        multiplier[m] = (multiplier[m] - '0') * 2;//converts char to int and mutiplies them by 2
         printf("%i\n", multiplier[m]);
         m++;
     }

@@ -23,12 +23,18 @@ int     main (void)
 {
 
     char *user_input = malloc(20 * sizeof(char));
-    char *multiplier = malloc(10 * sizeof(char));
+    int *multiplier = malloc(10 * sizeof(int));
+    int *other_digits = malloc(20 * sizeof(int));
     
     int j; //counter used to get every other digit
     int k; // counter used to store every other digit
+    int l; //counert used to get other digits
+    int m; //counter used to convert char to int
+    int n; //counter used to store other digits
 
     k = 0;
+    m = 0;
+    n = 0;
 
     do
     {
@@ -36,8 +42,8 @@ int     main (void)
         fgets(user_input, 20, stdin);
     } while (input_numbers(user_input) == 1);
 
-    // initializes j to the length of user's input (terminator included)
-    j = strlen(user_input);
+    // initializes j an dl to the length of user's input (terminator included)
+    l = j = strlen(user_input);
     printf("%i\n\n", j);
 
     // copies only necessary characters from user input to multiplier,  j - 3 because we want to start from second to last digit and strlen() includes the terminator
@@ -50,16 +56,40 @@ int     main (void)
         printf("%c \n", multiplier[k]);
         j -= 2;
         k++;
-    }
-    int m = 0;
+    } 
 
+    // copies all other digits
+    while(l >= 2)
+    {
+        other_digits[n] = user_input[l - 2];
+        printf("%c \n", other_digits[n]);
+        l -= 2;
+        n++;
+    }
+    
     // function to convert chars into ints
     while (multiplier[m] != '\0')
     {
-        printf("%c\n", multiplier[m]);
+        printf("%c ", multiplier[m]);
         multiplier[m] = (multiplier[m] - '0') * 2;//converts char to int and mutiplies them by 2
         printf("%i\n", multiplier[m]);
         m++;
+    }
+
+    // if a digit multiplied by 2 results in a 2 digit number, calculates the sum of the 2 digits
+    int sum = 0;
+    int remainder = 0;
+    for (int w = 0; multiplier[w] != '\0'; w++)
+    {
+        if (multiplier[w] > 9)
+        {
+            remainder = multiplier[w] / 10;
+            multiplier[w] %= 10;
+            sum = sum + multiplier[w] + remainder;
+        }
+        else
+            sum += multiplier[w];
+        printf("%i\n", sum);
     }
     free(user_input);
     free(multiplier);

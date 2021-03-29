@@ -42,8 +42,10 @@ int     main (void)
     printf("%i\n\n", j);
 
     // copies only necessary characters from user input to multiplier,  j - 3 because we want to start from second to last digit and strlen() includes the terminator
-    while (user_input[k] != '\0')
+    while (user_input[k] != '\n')
     {
+        printf("%c ", user_input[k]);
+        printf("%i \n", j);
         multiplier[k] = user_input[j - 3];
         j -= 2;
         k++;

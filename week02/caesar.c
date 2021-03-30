@@ -12,7 +12,7 @@ int main (int argc, char *argv[])
             return 1;
         }
 
-        for (int i = 0; argv[1][i] != '\n'; i++)
+        for (int i = 0; argv[1][i] != '\0'; i++)
         {
             if (argv[1][i] >= '0' && argv[1][i] <= '9')
                 continue;
@@ -26,4 +26,5 @@ int main (int argc, char *argv[])
         fgets(plaintext, 20, stdin);
     }
     free(plaintext);
+    return 0;
 }

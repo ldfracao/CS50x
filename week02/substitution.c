@@ -17,7 +17,7 @@ int     main (int argc, char *argv[])
         }
         else if (strlen(argv[1]) != 26)
         {
-            printf("Key must cotain 26 characters.\n");
+            printf("Key must contain 26 characters.\n");
             return 1;
         }
         for (int i = 0; argv[1][i]; i++)
@@ -29,7 +29,23 @@ int     main (int argc, char *argv[])
                 printf("Key must contain only alphabetic characters.\n");
                 return 1;
             }
-        } 
+        }
+        for (int i = 0; argv[1][i] != '\0'; i++)
+        {
+            for (int j = 0; argv[1][j] != '\0'; j++)
+            {
+                if (argv[1][i] == argv[1][j])
+                {
+                    printf("Key must not contain repeated characters.\n");
+                    return 1;
+                }
+            }
+        }
+
+        printf("plaintext: ");
+        fgets(plaintext, 200, stdin);
+        printf("ciphertext: ");
+
     }
     else
     {

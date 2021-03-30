@@ -21,10 +21,9 @@ int main (int argc, char *argv[])
                 printf("Usage: ./caesar key\n");
                 return 1;
             }
-        
+        }
         printf("plaintext: ");
         fgets(plaintext, 20, stdin);
-        }
     }
     free(plaintext);
 }

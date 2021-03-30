@@ -3,10 +3,28 @@
 
 int main (int argc, char *argv[])
 {
-    int key;
-    if(argc != 2)
+    char *plaintext = malloc(20 * sizeof(char));
+    if (plaintext != NULL)
     {
-        printf("Please provide the cipherkey (integer)");
-        return 1;
+        if(argc != 2)
+        {
+            printf("Usage: ./caesar key\n");
+            return 1;
+        }
+
+        for (int i = 0; argv[1][i] != '\n'; i++)
+        {
+            if (argv[1][i] >= '0' && argv[1][i] <= '9')
+                continue;
+            else
+            {
+                printf("Usage: ./caesar key\n");
+                return 1;
+            }
+        
+        printf("plaintext: ");
+        fgets(plaintext, 20, stdin);
+        }
     }
+    free(plaintext);
 }

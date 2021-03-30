@@ -31,6 +31,11 @@ int     main (int argc, char *argv[])
             }
         } 
     }
+    else
+    {
+        printf("An error occurred.\n");
+        return 1;
+    }
     free(plaintext);
     return 0;
 }

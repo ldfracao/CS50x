@@ -7,7 +7,7 @@
 // Max number of candidates
 #define MAX 9
 
-typedef char* string;
+typedef char *string;
 
 // Candidates have name and vote count
 typedef struct
@@ -57,7 +57,7 @@ int main(int argc, string argv[])
     for (int i = 0; i < voter_count; i++)
     {
         string name = get_string("Vote: ");
-
+        
         // Check for invalid vote
         if (!vote(name))
         {
@@ -74,11 +74,11 @@ bool vote(string name)
 {
     for (int i = 0; i < candidate_count; i++)
     {
-            if(strcmp(name, candidates[i].name) == 0)
-            {
-                candidates->votes++;
-                return true;
-            }
+        if(strcmp(candidates[i].name, name) == 0)
+        {
+            candidates[i].votes++;
+            return true;
+        }
     }
     return false;
 }
@@ -92,21 +92,34 @@ void print_winner(void)
 
 int get_int(char *str)
 {
-    char* user_in = malloc(100 * sizeof(char));
+    char* user_in = malloc(30 * sizeof(char));
     char* endp = NULL;
+    int conversion = 0;
 
-    printf("%s", str);
-    fgets(user_in, 10, stdin);
-        
-    return strtoimax(user_in, &endp, 10);
+    // strtoimax returns 0 if nothing was found to convert
+    if (user_in != NULL)
+    {
+        do
+        {
+            printf("%s", str);
+            fgets(user_in, 10, stdin);
+            conversion = strtoimax(user_in, &endp, 10);
+        } while (conversion == 0);
+    }
+
+    return conversion;
 }
 
 char* get_string(char *str)
 {
-    char *user_in2 = malloc(300 * sizeof(char));
+    char *user_in = malloc(30 * sizeof(char));
 
-    printf("%s", str);
-    fgets(user_in2, 10, stdin);
-    
-    return user_in2;
+    if (user_in != NULL)
+    {
+        printf("%s", str);
+        fgets(user_in, 30, stdin);
+        user_in[strcspn(user_in, "\n")] = '\0';
+    }
+
+    return user_in;
 }

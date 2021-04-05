@@ -92,7 +92,7 @@ void print_winner(void)
 
 int get_int(char *str)
 {
-    char* user_in = malloc(30 * sizeof(char));
+    char* user_in = malloc(10 * sizeof(int));
     char* endp = NULL;
     int conversion = 0;
 

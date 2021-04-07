@@ -1,5 +1,8 @@
-#include <cs50.h>
+#include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+#include <inttypes.h>
 
 // Max voters and candidates
 #define MAX_VOTERS 100
@@ -7,6 +10,8 @@
 
 // preferences[i][j] is jth preference for voter i
 int preferences[MAX_VOTERS][MAX_CANDIDATES];
+
+typedef char* string;
 
 // Candidates have name, vote count, eliminated status
 typedef struct
@@ -31,6 +36,8 @@ bool print_winner(void);
 int find_min(void);
 bool is_tie(int min);
 void eliminate(int min);
+int get_int(char *str);
+char* get_string(char *str, ...);
 
 int main(int argc, string argv[])
 {
@@ -124,17 +131,61 @@ int main(int argc, string argv[])
     return 0;
 }
 
+int get_int(char *str)
+{
+    char* user_in = malloc(10 * sizeof(int));
+    char* endp = NULL;
+    int conversion = 0;
+
+    // strtoimax returns 0 if nothing was found to convert
+    if (user_in != NULL)
+    {
+        do
+        {
+            printf("%s", str);
+            fgets(user_in, 10, stdin);
+            conversion = strtoimax(user_in, &endp, 10);
+        } while (conversion == 0);
+    }
+
+    return conversion;
+}
+
+char* get_string(char *str, ...)
+{
+    char *user_in = malloc(30 * sizeof(char));
+
+    if (user_in != NULL)
+    {
+        printf("%s", str);
+        fgets(user_in, 30, stdin);
+        user_in[strcspn(user_in, "\n")] = '\0';
+    }
+
+    return user_in;
+}
+
 // Record preference if vote is valid
 bool vote(int voter, int rank, string name)
 {
-    // TODO
+   for (voter = 0; voter < voter_count; voter++)
+    {
+        for (rank = 0; rank < candidate_count; rank++)
+        {
+            if(strcmp(candidates[voter].name, name) == 0)
+            {
+                preferences[voter][rank]++;
+                return true;
+            }
+        }
+    }
     return false;
 }
 
 // Tabulate votes for non-eliminated candidates
 void tabulate(void)
 {
-    // TODO
+    
     return;
 }
 

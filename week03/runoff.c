@@ -172,10 +172,13 @@ bool vote(int voter, int rank, string name)
     {
         for (rank = 0; rank < candidate_count; rank++)
         {
-            if(strcmp(candidates[voter].name, name) == 0)
+            for (int j = 0; j < candidate_count; j++)
             {
-                preferences[voter][rank]++;
-                return true;
+                if(strcmp(candidates[j].name, name) == 0)
+                {
+                    preferences[voter][rank] = rank;
+                    return true;
+                }
             }
         }
     }
@@ -185,7 +188,19 @@ bool vote(int voter, int rank, string name)
 // Tabulate votes for non-eliminated candidates
 void tabulate(void)
 {
-    
+    // loops through voters
+    for (int i = 0; i < voter_count; i++)
+    {
+        // loops through candidates
+        for (int j = 0; j < candidate_count; j++)
+        {
+            // checks for elimination
+            if (!candidates[j].eliminated)
+            {
+                candidates[j].votes++;
+            }
+        }
+    }
     return;
 }
 

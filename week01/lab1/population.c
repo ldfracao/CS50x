@@ -21,13 +21,18 @@ int     input_numbers(char *str)
 
 int main(void)
 {
-    // Prompt for start size and keep asking for input until it contains only numbers
+    // start and end size variables
     char *start = malloc(10 * sizeof(char));
-    int start_conversion;
-    char *endp = NULL;
     char *end = malloc(10 * sizeof(char));
+
+    // helper pointer used in strtoimax function
+    char *endp = NULL;
+
+    // variables used in char to int conversion
+    int start_conversion;
     int end_conversion;
 
+    // Prompt for start size and keep asking for input until it contains only numbers
     do
     {
         printf("Start size: ");
